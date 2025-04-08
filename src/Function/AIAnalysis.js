@@ -41,7 +41,27 @@ Please ensure your analysis is:
 1. Professional and empathetic
 2. Based on evidence from the survey
 3. Focused on actionable insights
-4. Written in clear, accessible language`
+4. Written in clear, accessible language
+
+### Support Resources
+
+If you need professional support, please don't hesitate to reach out:
+
+- **Wellness and Counselling Centre**
+  - Office Hours: 3943 7208
+  - Email: wacc@cuhk.edu.hk
+  - Online Appointment: https://wacc.osa.cuhk.edu.hk/tc/
+
+- **24/7 Support Hotlines**
+  - CUHK 24-hour Emotional Support: 5400 2055
+  - "Open Up" WhatsApp: 9101 2012
+  - Mental Health Link: 18111
+
+- **Online Resources**
+  - Wellness Centre: https://wacc.osa.cuhk.edu.hk/tc/
+  - Sunshine at CUHK: https://wacc.osa.cuhk.edu.hk/tc/self-help-section/sunshine-at-cuhk/
+
+`
           },
           {
             role: 'user',
