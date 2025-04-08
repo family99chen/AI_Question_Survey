@@ -1,0 +1,314 @@
+.aif-content {
+  margin: 2rem 0;
+  min-height: 400px;
+}
+
+.aif-analysis-section {
+  background: rgba(0, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  height: 400px;
+  min-height: 400px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.aif-section-title {
+  color: #00ffff;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+/* Markdown 内容样式 */
+.aif-analysis-text {
+  color: #fff;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  min-height: 200px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* 加载状态样式 */
+.aif-analysis-text.loading {
+  opacity: 0.7;
+}
+
+/* 标题样式 */
+.aif-analysis-text h3 {
+  color: #00ffff;
+  font-size: 1.3rem;
+  margin: 2rem 0 1rem;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+/* 列表样式 */
+.aif-analysis-text ul,
+.aif-analysis-text ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+  list-style: none;
+}
+
+.aif-analysis-text li {
+  margin: 0.5rem 0;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+/* 无序列表项样式 */
+.aif-analysis-text ul li::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 0.7rem;
+  width: 6px;
+  height: 6px;
+  background: #00ffff;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+/* 有序列表项样式 */
+.aif-analysis-text ol {
+  counter-reset: item;
+  list-style: none;
+}
+
+.aif-analysis-text ol li {
+  counter-increment: item;
+}
+
+.aif-analysis-text ol li::before {
+  content: counter(item) ".";
+  color: #00ffff;
+  position: absolute;
+  left: -1.5rem;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+/* 引用块样式 */
+.aif-analysis-text blockquote {
+  margin: 1rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 3px solid #00ffff;
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+.aif-analysis-text blockquote p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 段落样式 */
+.aif-analysis-text p {
+  margin: 1rem 0;
+}
+
+.aif-cyber-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  margin: 2rem 0;
+}
+
+.aif-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.aif-metric-card {
+  background: rgba(0, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.aif-metric-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 255, 255, 0.4);
+  box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
+}
+
+.aif-metric-title {
+  display: block;
+  color: #00ffff;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.aif-metric-value {
+  display: block;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+/* 动画效果 */
+.aif-analysis-text {
+  opacity: 0;
+  animation: content-fade-in 0.5s ease forwards;
+}
+
+@keyframes content-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .aif-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .aif-analysis-section {
+    padding: 1.5rem;
+  }
+  
+  .aif-analysis-text {
+    font-size: 1rem;
+  }
+}
+
+/* 重新设计指令输入区域样式 */
+.aif-instruction-wrapper {
+  background: rgba(0, 255, 255, 0.03);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.aif-instruction-wrapper:hover {
+  border-color: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+.aif-instruction-header {
+  width: 100%;
+  text-align: left;
+}
+
+.aif-instruction-title {
+  color: #00ffff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+.aif-instruction-input {
+  width: 100%;
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 100px;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.aif-instruction-input:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+}
+
+.aif-instruction-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.aif-regenerate-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #00ffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  min-width: 160px;
+}
+
+.aif-button-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.aif-regenerate-button:hover {
+  background: rgba(0, 255, 255, 0.15);
+  border-color: #00ffff;
+  transform: translateY(-2px);
+}
+
+.aif-regenerate-button:hover .aif-button-icon {
+  transform: rotate(180deg);
+}
+
+.aif-regenerate-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.aif-regenerate-button:active {
+  transform: translateY(0);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .aif-instruction-wrapper {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .aif-regenerate-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* 自定义滚动条样式 */
+.aif-analysis-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.aif-analysis-section::-webkit-scrollbar-track {
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.aif-analysis-section::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.2);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.aif-analysis-section::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.3);
+}
+
+/* Firefox 滚动条样式 */
+.aif-analysis-section {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 255, 0.2) rgba(0, 255, 255, 0.05);
+}

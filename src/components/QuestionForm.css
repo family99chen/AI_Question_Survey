@@ -1,0 +1,436 @@
+.ai-survey-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* 进度指示器样式 */
+.ai-form-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.ai-progress-step {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.ai-step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid rgba(0, 255, 255, 0.2);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.ai-progress-step.active .ai-step-number {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: #00ffff;
+    color: #00ffff;
+}
+
+.ai-step-line {
+    flex: 1;
+    height: 2px;
+    background: rgba(0, 255, 255, 0.1);
+    margin: 0 0.5rem;
+}
+
+.ai-progress-step:last-child .ai-step-line {
+    display: none;
+}
+
+.ai-progress-step.active .ai-step-line {
+    background: rgba(0, 255, 255, 0.3);
+}
+
+/* 表单部分样式 */
+.ai-form-section {
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    padding-bottom: 2rem;
+}
+
+.ai-section-title {
+    color: #00ffff;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.ai-form-group {
+    margin-bottom: 3rem;
+}
+
+.ai-form-label {
+    display: block;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.ai-form-input,
+.ai-form-select,
+.ai-form-textarea {
+    width: 100%;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.8rem;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.ai-form-input:focus,
+.ai-form-select:focus,
+.ai-form-textarea:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+/* 评分组件样式 */
+.ai-rating-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.ai-rating-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ai-rating-input {
+    display: none;
+}
+
+.ai-rating-text {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.ai-rating-input:checked + .ai-rating-text {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: #00ffff;
+    color: #00ffff;
+}
+
+/* 按钮样式 */
+.ai-form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.ai-nav-button {
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-prev-button {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: #00ffff;
+}
+
+.ai-next-button {
+    background: rgba(0, 255, 255, 0.2);
+    border: 1px solid #00ffff;
+    color: #00ffff;
+}
+
+.ai-nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
+}
+
+/* 提交按钮样式 */
+.ai-submit-button {
+    background: linear-gradient(45deg, #00ffff, #00ccff);
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 255, 0.3);
+    background: linear-gradient(45deg, #00ccff, #00ffff);
+}
+
+.ai-submit-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
+}
+
+.ai-submit-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 提交按钮容器样式 */
+.ai-form-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+/* Loading Ring Animation */
+.ai-loading-ring {
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.ai-loading-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #000;
+    border-radius: 50%;
+    animation: ai-loading-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #000 transparent transparent transparent;
+}
+
+@keyframes ai-loading-ring {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .ai-rating-group {
+        flex-wrap: wrap;
+    }
+    
+    .ai-form-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .ai-nav-button,
+    .ai-submit-button {
+        width: 100%;
+    }
+}
+
+/* 在现有样式的基础上添加 */
+
+.ai-form-others {
+    margin-top: 1rem;
+    display: none;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.8rem;
+    color: #fff;
+    width: 100%;
+}
+
+.ai-form-others:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+/* 单选按钮组样式 */
+.ai-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ai-radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.ai-radio-label:hover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.3);
+}
+
+.ai-radio-input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 50%;
+    margin-right: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.ai-radio-input:checked {
+    border-color: #00ffff;
+    background: rgba(0, 255, 255, 0.1);
+}
+
+.ai-radio-input:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #00ffff;
+    border-radius: 50%;
+}
+
+.ai-radio-text {
+    color: #fff;
+    font-size: 1rem;
+}
+
+/* 添加表格样式 */
+.ai-matrix-table {
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ai-matrix-header {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    background: rgba(0, 255, 255, 0.1);
+}
+
+.ai-matrix-row {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.ai-matrix-cell {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    border-right: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.ai-matrix-cell:last-child {
+    border-right: none;
+}
+
+.ai-matrix-label {
+    justify-content: flex-start;
+    text-align: left;
+    padding: 1rem;
+    line-height: 1.4;
+}
+
+.ai-matrix-radio {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-matrix-radio:checked {
+    border-color: #00ffff;
+    background: rgba(0, 255, 255, 0.1);
+}
+
+.ai-matrix-radio:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #00ffff;
+    border-radius: 50%;
+}
+
+.ai-matrix-radio:hover {
+    border-color: rgba(0, 255, 255, 0.5);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .ai-matrix-header,
+    .ai-matrix-row {
+        grid-template-columns: 2fr repeat(4, 1fr);
+        font-size: 0.9rem;
+    }
+
+    .ai-matrix-cell {
+        padding: 0.8rem 0.5rem;
+    }
+}
+
+.ai-form-textarea {
+    width: 100%;
+    min-height: 120px;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
+    color: #fff;
+    font-size: 1rem;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+.ai-form-textarea:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.ai-form-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}

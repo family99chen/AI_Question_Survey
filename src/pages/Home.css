@@ -1,0 +1,347 @@
+.ai-home-page {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: #0a0a0a; /* 纯黑色背景 */
+    padding-top: 0px; /* 为顶部导航栏留出空间 */
+    color: #fff;
+}
+
+.ai-particles-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.ai-hero-section {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem;
+    min-height: calc(100vh - 70px); /* 减去顶部导航栏的高度 */
+    z-index: 2;
+}
+
+.ai-hero-content {
+    flex: 1;
+    max-width: 600px;
+    z-index: 2;
+}
+
+.ai-gradient-text {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #00ffff, #00ccff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    animation: ai-textShimmer 3s infinite;
+}
+
+.ai-hero-description {
+    font-size: 1.2rem;
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.ai-cyber-card {
+    background: rgba(16, 16, 24, 0.8);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+}
+
+.ai-cyber-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.ai-form-group {
+    position: relative;
+}
+
+.ai-cyber-label {
+    display: flex;
+    align-items: center;
+    color: #00ffff;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.ai-label-icon {
+    margin-right: 0.5rem;
+    opacity: 0.8;
+}
+
+.ai-cyber-input, .ai-cyber-select {
+    width: 100%;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.ai-cyber-input:focus,
+.ai-cyber-select:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.ai-cta-button {
+    background: linear-gradient(45deg, #00ffff, #00ccff);
+    color: #000;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ai-cta-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* 3D立方体 */
+.ai-hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1500px;
+}
+
+.ai-cube-wrapper {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: ai-rotateCube 20s infinite linear;
+}
+
+.ai-cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.ai-cube-face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.ai-cube-face.ai-front { transform: translateZ(100px); }
+.ai-cube-face.ai-back { transform: rotateY(180deg) translateZ(100px); }
+.ai-cube-face.ai-right { transform: rotateY(90deg) translateZ(100px); }
+.ai-cube-face.ai-left { transform: rotateY(-90deg) translateZ(100px); }
+.ai-cube-face.ai-top { transform: rotateX(90deg) translateZ(100px); }
+.ai-cube-face.ai-bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+/* 动画 */
+@keyframes ai-rotateCube {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+@keyframes ai-textShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .ai-hero-section {
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .ai-hero-content {
+        max-width: 100%;
+        margin-bottom: 3rem;
+    }
+
+    .ai-gradient-text {
+        font-size: 2.5rem;
+    }
+
+    .ai-hero-image {
+        display: none;
+    }
+}
+
+.ai-content-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.ai-page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.ai-survey-container {
+    background: rgba(16, 16, 24, 0.8);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 2rem;
+}
+
+.ai-survey-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.ai-form-section {
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    padding-bottom: 2rem;
+}
+
+.ai-section-title {
+    color: #00ffff;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.ai-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.ai-form-label {
+    display: block;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.ai-form-input,
+.ai-form-select,
+.ai-form-textarea {
+    width: 100%;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.8rem;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.ai-form-input:focus,
+.ai-form-select:focus,
+.ai-form-textarea:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.ai-rating-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.ai-rating-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ai-rating-input {
+    display: none;
+}
+
+.ai-rating-text {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.ai-rating-input:checked + .ai-rating-text {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: #00ffff;
+    color: #00ffff;
+}
+
+.ai-form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.ai-submit-button {
+    background: linear-gradient(45deg, #00ffff, #00ccff);
+    color: #000;
+    border: none;
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+}
+
+.ai-submit-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .ai-content-wrapper {
+        padding: 1rem;
+    }
+
+    .ai-gradient-text {
+        font-size: 2rem;
+    }
+
+    .ai-survey-container {
+        padding: 1rem;
+    }
+
+    .ai-rating-group {
+        flex-wrap: wrap;
+    }
+}
