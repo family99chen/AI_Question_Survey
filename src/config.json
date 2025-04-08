@@ -4,6 +4,6 @@
     "secret_key": "sk-zk2d241c4f6c8bf4ce50c5a6cd848262a7067f4e4907e7fe"
   },
   "app": {
-    "dev_mode": true
+    "dev_mode": false
   }
 }
