@@ -20,16 +20,16 @@ const Sidebar = () => {
             首页
           </Link>
           <Link 
+            to="/question-result" 
+            className={`ai-nav-link ${location.pathname === '/question-result' ? 'ai-active' : ''}`}
+          >
+            问卷结果
+          </Link>
+          <Link 
             to="/result" 
             className={`ai-nav-link ${location.pathname === '/result' ? 'ai-active' : ''}`}
           >
-            分析结果
-          </Link>
-          <Link 
-            to="/about" 
-            className={`ai-nav-link ${location.pathname === '/about' ? 'ai-active' : ''}`}
-          >
-            关于我们
+            AI分析
           </Link>
         </nav>
       </div>

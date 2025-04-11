@@ -92,109 +92,64 @@ const QuestionForm = ({ onSubmit, DEV_MODE = false }) => {
     }));
   };
 
-  const handleNext = (e) => {
-    e.preventDefault();
-    logFormData('Before Next');
+  const handleNext = () => {
+    // 验证当前步骤
+    if (!validateCurrentStep()) {
+      return;
+    }
+
+    // 如果是最后一步，提交表单
+    if (currentStep === totalSteps) {
+      handleSubmit();
+      return;
+    }
+
+    // 保存问题选项到 localStorage
+    saveQuestionOptions();
     
-    if (!DEV_MODE) {
-      let isValid = true;
-      let emptyFields = [];
+    // 前进到下一步
+    setCurrentStep(prev => prev + 1);
+    window.scrollTo(0, 0);
+  };
+
+  // 添加保存问题选项的函数
+  const saveQuestionOptions = () => {
+    // 定义问卷问题选项 - 根据实际问卷内容修正
+    const questionOptions = {
+      // 第一页 - 基本信息
+      "What is your age?": ["Under 18", "18-20", "21-23", "24+"],
+      "What is your gender?": ["Male", "Female", "Non-binary/Third Gender", "Prefer not to say"],
+      "Which faculty are you enrolled in?": ["Arts", "Business Administration", "Education", "Engineering", "Law", "Medicine", "Science", "Social Science", "Other"],
+      "What is your current year of study?": ["Year 1 (undergraduate)", "Year 2 (undergraduate)", "Year 3 (undergraduate)", "Year 4+ (undergraduate)", "Postgraduate"],
+      "Are you an international or local student?": ["International", "Local (Hong Kong)", "Mainland China"],
       
-      if (currentStep === 1) {
-        const requiredFields = ['age', 'gender', 'faculty', 'year', 'studentType'];
-        requiredFields.forEach(field => {
-          if (!formData[field]) {
-            isValid = false;
-            emptyFields.push(field);
-          }
-        });
-        
-        if (formData.faculty === 'others' && !formData.facultyOthers) {
-          isValid = false;
-          emptyFields.push('facultyOthers');
-        }
-      } 
-      else if (currentStep === 2) {
-        const requiredFields = ['interest', 'depression', 'sleep', 'tired', 'appetite'];
-        requiredFields.forEach(field => {
-          if (!formData[field]) {
-            isValid = false;
-            emptyFields.push(field);
-          }
-        });
-      }
-      else if (currentStep === 3) {
-        const requiredFields = ['workload', 'performance'];
-        requiredFields.forEach(field => {
-          if (!formData[field]) {
-            isValid = false;
-            emptyFields.push(field);
-          }
-        });
-      }
-      else if (currentStep === 4) {
-        const requiredFields = ['satisfaction', 'loneliness'];
-        requiredFields.forEach(field => {
-          if (!formData[field]) {
-            isValid = false;
-            emptyFields.push(field);
-          }
-        });
-      }
-      else if (currentStep === 5) {
-        const requiredFields = ['financialStress', 'sleepHours', 'exercise'];
-        requiredFields.forEach(field => {
-          if (!formData[field]) {
-            isValid = false;
-            emptyFields.push(field);
-          }
-        });
-        
-        if (formData.sleepHours === 'others' && !formData.sleepHoursOthers) {
-          isValid = false;
-          emptyFields.push('sleepHoursOthers');
-        }
-      }
-      else if (currentStep === 6) {
-        const requiredFields = ['socialMediaHours', 'socialMediaStress'];
-        requiredFields.forEach(field => {
-          if (!formData[field]) {
-            isValid = false;
-            emptyFields.push(field);
-          }
-        });
-      }
-      else if (currentStep === 7) {
-        const requiredFields = ['mentalHealthChallenge', 'stressManagement', 'anxietyDepression', 'resourcesSufficient'];
-        requiredFields.forEach(field => {
-          if (!formData[field]) {
-            isValid = false;
-            emptyFields.push(field);
-          }
-        });
-      }
-      else if (currentStep === 8) {
-        const requiredFields = ['surveyClarity', 'surveyLength', 'suggestions'];
-        requiredFields.forEach(field => {
-          if (!formData[field]) {
-            isValid = false;
-            emptyFields.push(field);
-          }
-        });
-      }
-      // 第9页是可选的邮箱，不需要验证
-
-      if (!isValid) {
-        console.log('Missing fields:', emptyFields);
-        alert(`Please fill in all required fields: ${emptyFields.join(', ')}`);
-        return;
-      }
-    }
-
-    if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
-      logFormData('After Next');
-    }
+      // 第二页 - PHQ-9 相关问题
+      "Little interest or pleasure in doing things?": ["Not at all", "Several days", "More than half the days", "Nearly every day"],
+      "Feeling down, depressed, or hopeless?": ["Not at all", "Several days", "More than half the days", "Nearly every day"],
+      "Trouble falling/staying asleep, or sleeping too much?": ["Not at all", "Several days", "More than half the days", "Nearly every day"],
+      "Feeling tired or having little energy?": ["Not at all", "Several days", "More than half the days", "Nearly every day"],
+      "Poor appetite or overeating?": ["Not at all", "Several days", "More than half the days", "Nearly every day"],
+      
+      // 第三页 - 学术和社交
+      "How often do you feel overwhelmed by academic workload?": ["Never", "Rarely", "Sometimes", "Often", "Always"],
+      "Do you have concerns about your academic performance?": ["Never", "Rarely", "Sometimes", "Often", "Always"],
+      "How satisfied are you with your social relationships at CUHK?": ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very dissatisfied"],
+      "Do you feel isolated or lonely on campus?": ["Never", "Rarely", "Sometimes", "Often", "Always"],
+      "How much does financial stress affect your well-being?": ["Not at all", "Slightly", "Moderately", "Significantly", "Severely"],
+      
+      // 第四页 - 生活习惯和资源
+      "How many hours do you sleep per night on average?": ["Less than 5", "5-6", "7-8", "9+", "Other"],
+      "How often do you engage in physical exercise?": ["Never", "Rarely", "Sometimes", "Regularly", "Daily"],
+      "On average, how many hours daily do you spend on social media?": ["Less than 1", "1-2", "3-4", "5+"],
+      "How often do you feel stressed, anxious, or inadequate after using social media?": ["Never", "Rarely", "Sometimes", "Often", "Always"],
+      "Have you experienced any mental health challenges during your time at university?": ["Yes", "No", "Not sure"],
+      "What strategies do you use to manage stress?": ["Exercise", "Meditation", "Talking to friends", "Professional help", "Other"],
+      "Do you think CUHK provides enough resources to help students with mental health?": ["Yes", "No", "Not sure"],
+      "Survey clarity feedback": ["Very clear", "Somewhat clear", "Neutral", "Somewhat unclear", "Very unclear"],
+      "Was the survey length appropriate?": ["Too short", "Just right", "Too long"]
+    };
+    
+    localStorage.setItem('questionOptions', JSON.stringify(questionOptions));
   };
 
   const handlePrev = (e) => {
@@ -408,6 +363,105 @@ const QuestionForm = ({ onSubmit, DEV_MODE = false }) => {
   React.useEffect(() => {
     logFormData(`Step Changed to ${currentStep}`);
   }, [currentStep]);
+
+  // 添加验证当前步骤的函数
+  const validateCurrentStep = () => {
+    if (!DEV_MODE) {
+      let isValid = true;
+      let emptyFields = [];
+      
+      if (currentStep === 1) {
+        const requiredFields = ['age', 'gender', 'faculty', 'year', 'studentType'];
+        requiredFields.forEach(field => {
+          if (!formData[field]) {
+            isValid = false;
+            emptyFields.push(field);
+          }
+        });
+        
+        if (formData.faculty === 'others' && !formData.facultyOthers) {
+          isValid = false;
+          emptyFields.push('facultyOthers');
+        }
+      } 
+      else if (currentStep === 2) {
+        const requiredFields = ['interest', 'depression', 'sleep', 'tired', 'appetite'];
+        requiredFields.forEach(field => {
+          if (!formData[field]) {
+            isValid = false;
+            emptyFields.push(field);
+          }
+        });
+      }
+      else if (currentStep === 3) {
+        const requiredFields = ['workload', 'performance'];
+        requiredFields.forEach(field => {
+          if (!formData[field]) {
+            isValid = false;
+            emptyFields.push(field);
+          }
+        });
+      }
+      else if (currentStep === 4) {
+        const requiredFields = ['satisfaction', 'loneliness'];
+        requiredFields.forEach(field => {
+          if (!formData[field]) {
+            isValid = false;
+            emptyFields.push(field);
+          }
+        });
+      }
+      else if (currentStep === 5) {
+        const requiredFields = ['financialStress', 'sleepHours', 'exercise'];
+        requiredFields.forEach(field => {
+          if (!formData[field]) {
+            isValid = false;
+            emptyFields.push(field);
+          }
+        });
+        
+        if (formData.sleepHours === 'others' && !formData.sleepHoursOthers) {
+          isValid = false;
+          emptyFields.push('sleepHoursOthers');
+        }
+      }
+      else if (currentStep === 6) {
+        const requiredFields = ['socialMediaHours', 'socialMediaStress'];
+        requiredFields.forEach(field => {
+          if (!formData[field]) {
+            isValid = false;
+            emptyFields.push(field);
+          }
+        });
+      }
+      else if (currentStep === 7) {
+        const requiredFields = ['mentalHealthChallenge', 'stressManagement', 'anxietyDepression', 'resourcesSufficient'];
+        requiredFields.forEach(field => {
+          if (!formData[field]) {
+            isValid = false;
+            emptyFields.push(field);
+          }
+        });
+      }
+      else if (currentStep === 8) {
+        const requiredFields = ['surveyClarity', 'surveyLength', 'suggestions'];
+        requiredFields.forEach(field => {
+          if (!formData[field]) {
+            isValid = false;
+            emptyFields.push(field);
+          }
+        });
+      }
+      // 第9页是可选的邮箱，不需要验证
+
+      if (!isValid) {
+        console.log('Missing fields:', emptyFields);
+        alert(`Please fill in all required fields: ${emptyFields.join(', ')}`);
+        return false;
+      }
+    }
+    return true;
+  };
 
   return (
     <form 

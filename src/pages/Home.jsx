@@ -117,10 +117,10 @@ const Home = () => {
         aiAnalysis: ''
       }));
       
-      // 立即跳转到结果页面
-      navigate('/result');
+      // 立即跳转到问卷结果页面
+      navigate('/question-result');
       
-      // 在结果页面继续处理AI分析
+      // 在后台继续处理AI分析
       const aiAnalysis = await analyzeFormData(
         formData,
         (partialResponse) => {
