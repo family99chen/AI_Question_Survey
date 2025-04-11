@@ -66,7 +66,7 @@ cp src/config.example.json src/config.json
 
 ```bash
 # 开发环境
-npm run dev
+npm start
 
 # 生产构建
 npm run build
